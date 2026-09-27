@@ -1,13 +1,20 @@
-# Tài liệu Vecna / AIC26
+# Vecna / AIC26 Documentation
 
-- [Nhập video](cli-add.md).
-- [Trích xuất đặc trưng](cli-analyse.md).
-- [Tìm kiếm và bộ lọc](searcher.md).
-- [Phím tắt](frontend-shortcuts.md).
-- [BGE-M3 ONNX / DirectML](bge-m3-onnx-directml.md).
-- [Theo dõi nguồn dữ liệu](provenance-v1.md).
-- [DRES](integrations/dres.md).
-- [Ghi chú môi trường](development/setup-notes.md).
-- [Đổi tên và tổ chức repository](development/repository-preparation.md).
+## User guides
 
-`backend/` và `online/` chứa tài liệu nghiên cứu, so sánh các hệ thống. PDF/PNG kiến trúc cũ được bảo tồn trong `architecture/archive/`, bỏ qua khi đưa lên Git theo mặc định. PDF báo cáo cũ nằm ở `../report/archive/`; source hiện tại là `../report/main.tex`.
+- [Add videos](cli-add.md)
+- [Extract video features](cli-analyse.md)
+- [Search and filters](searcher.md)
+- [Frontend keyboard shortcuts](frontend-shortcuts.md)
+- [BGE-M3 ONNX / DirectML](bge-m3-onnx-directml.md)
+- [Data provenance](provenance-v1.md)
+- [DRES integration overview](integrations/dres.md)
+
+## Development
+
+- [Environment setup notes](development/setup-notes.md)
+- [Repository preparation and validation](development/repository-preparation.md)
+- `backend/`: backend research and comparisons
+- `online/`: research on web interfaces and online retrieval
+
+Archived architecture PDFs and diagrams are in `architecture/archive/` and are excluded from Git by default. The earlier technical report PDF is in `../report/archive/`; the current report source is `../report/main.tex`.

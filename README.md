@@ -1,14 +1,20 @@
 # Vecna / AIC26
 
-Hệ thống truy hồi video đa phương thức dành cho AI Challenge 2026. Vecna kết hợp tìm kiếm bằng văn bản và hình ảnh, OCR/ASR, truy vấn chuỗi sự kiện, lọc cảnh giao thông và nộp kết quả qua DRES.
+Vecna is a multimodal video retrieval system developed for the 2026 AI Challenge. It combines visual search, OCR, speech recognition, temporal event search, traffic-scene filters, and an interface for competition workflows.
 
-Package Python: `aic26` · Command line: `aic26-cli` · Web UI: React + Vite · Vector database: Milvus.
+**Python package:** `aic26` · **CLI:** `aic26-cli` · **Web UI:** React and Vite · **Vector database:** Milvus
 
-## Cài đặt
+## Requirements
 
-Yêu cầu Python 3.11+, Node.js 18+ và npm, Docker Desktop đang chạy, FFmpeg và Tesseract trong `PATH`. Mô hình và GPU cần phù hợp với môi trường chạy.
+- Python 3.11 or later
+- Node.js 18 or later and npm
+- Docker Desktop, running for Milvus
+- FFmpeg and Tesseract available on `PATH`
+- A compatible GPU and model environment for the extractors you enable
 
-Mở PowerShell tại thư mục repository:
+## Installation
+
+From the repository root, create a Python environment and install the project dependencies:
 
 ```powershell
 python -m venv .venv
@@ -16,11 +22,11 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-Package được cài editable từ `aic26-src`.
+The editable install points to `aic26-src`. The frontend dependencies are installed automatically the first time the CLI starts the frontend. To install them separately, run `npm ci` in `aic26-src/aic26/packages/webui/frontend`.
 
-## Chuẩn bị dữ liệu và chạy
+## Prepare a workspace and run
 
-`config.yaml` ở gốc là cấu hình hiện tại. Điều chỉnh mô hình, đường dẫn dữ liệu và cổng dịch vụ trước khi chạy.
+Review `config.yaml` and configure the models, data paths, and service settings for your machine. Create a separate workspace with `aic26-cli init`, then run the commands below from that workspace. You can also pass `-w <workspace>` to a CLI command.
 
 ```powershell
 aic26-cli add "D:/Videos" -d -kc
@@ -29,57 +35,50 @@ aic26-cli index
 aic26-cli --dev serve
 ```
 
-Web UI phát triển mặc định: `http://localhost:5173`. Core API mặc định: `http://localhost:6900`. `aic26-cli serve` build frontend và phục vụ qua backend. Cổng thực tế phụ thuộc cấu hình.
+The development Web UI defaults to `http://localhost:5173`; the core service defaults to `http://localhost:6900`. Use `aic26-cli serve` to build the frontend and serve it through the backend. Actual ports depend on your configuration.
 
-Để tạo workspace riêng, chạy `aic26-cli init` trong thư mục mới rồi thao tác tại đó, hoặc dùng `aic26-cli -w <workspace> ...`. Sao lưu cấu hình đã tùy chỉnh trước khi chạy `init`.
+## Optional API key
 
-## Cấu hình tùy chọn
-
-Giữ `api_key: ""` trong cấu hình được chia sẻ. Đặt khóa Groq qua môi trường:
+Keep `api_key: ""` in any configuration shared with others. Provide your own Groq key locally through an environment variable:
 
 ```powershell
 $env:GROQ_API_KEY = "YOUR_GROQ_API_KEY"
 ```
 
-Có thể sao chép `.env.example` thành `.env` và điền giá trị riêng. `.env` được Git bỏ qua.
+Alternatively, copy `.env.example` to `.env` and enter your local settings there. Git ignores `.env` files.
 
-- `AIC26_CAMERA_METADATA_PATH`: đường dẫn metadata camera tùy chọn.
-- `AIC26_TRANSLATION_CACHE_DIR`: thư mục cache dịch tùy chọn.
+Optional environment variables:
 
-Sau khi chuyển từ bản cũ, cài lại package và dùng `aic26-cli`. Cache `.cache/aic26` và khóa trình duyệt `aic26_collection` dùng tên mới; cần chọn lại collection đã lưu dưới tên cũ. Dữ liệu và collection Milvus được giữ nguyên.
+- `AIC26_CAMERA_METADATA_PATH` sets the camera metadata file path.
+- `AIC26_TRANSLATION_CACHE_DIR` sets the translation cache directory.
 
-## Cấu trúc
+## Repository layout
 
 ```text
-Vecna-AIC/
-├── aic26-src/
-│   ├── aic26/
-│   │   ├── cli/          # init, add, analyse, index, validate, serve
-│   │   ├── packages/     # Trích xuất, chỉ mục, tìm kiếm, backend và frontend
-│   │   ├── resources/    # Cấu hình mẫu và Milvus Compose
-│   │   └── script/       # Tải dữ liệu
-│   └── tests/
-├── tools/dres/           # Cổng DRES độc lập và launcher Windows
-├── docs/                 # Hướng dẫn và nghiên cứu kỹ thuật
-├── report/               # Source báo cáo
-├── config.yaml
+Vecna-AIC26/
+├── aic26-src/                 # Python package, backend, frontend, and tests
+├── tools/dres/                # Standalone DRES submission portal
+├── docs/                      # Guides and technical notes
+├── report/                    # Technical report source
+├── config.yaml                # Local project configuration
 ├── camera_info_workspace2_road_classification.json
 ├── segment_map.json
-├── requirements.txt
-└── LICENSE
+└── requirements.txt
 ```
 
-Hai file JSON giữ ở gốc để code hiện tại tiếp tục đọc đúng vị trí.
+The JSON files stay at the repository root because the current application reads them from there.
 
-## Tài liệu
+## Documentation
 
-- [Danh mục tài liệu](docs/README.md).
-- [Phím tắt](docs/frontend-shortcuts.md).
-- [Phân tích dữ liệu](docs/cli-analyse.md) và [tìm kiếm](docs/searcher.md).
-- [Tích hợp DRES](docs/integrations/dres.md).
-- [Cổng DRES độc lập](tools/dres/README.md).
-- [Ghi nhận chuẩn bị repository](docs/development/repository-preparation.md).
+- [Documentation index](docs/README.md)
+- [Frontend keyboard shortcuts](docs/frontend-shortcuts.md)
+- [Video analysis](docs/cli-analyse.md) and [search](docs/searcher.md)
+- [DRES integration overview](docs/integrations/dres.md)
+- [Standalone DRES portal](tools/dres/README.md)
+- [Repository setup and validation](docs/development/repository-preparation.md)
 
-## Giấy phép
+The DRES documentation describes the integration at a high level. Submission service details are intentionally left out because they may change; use the current competition instructions when configuring submissions.
 
-Phân phối theo [MIT License](LICENSE). Thông báo bản quyền của phần mềm được kế thừa được giữ nguyên; Vecna/AIC26 xác định bản dự án này.
+## License
+
+See the license file included with the project. Retain applicable third-party copyright notices when redistributing inherited components.

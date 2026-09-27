@@ -1,16 +1,16 @@
-# Vecna / AIC26 — Python package
+# Vecna / AIC26 — Python Package
 
-Package `aic26` cung cấp pipeline nhập video, phân tích đặc trưng, tạo chỉ mục Milvus, truy hồi và chạy Web UI.
+The `aic26` package provides the video ingestion, feature extraction, Milvus indexing, retrieval, and Web UI services used by Vecna.
 
-Từ thư mục này:
+From this directory, install the package in editable mode and inspect the available commands:
 
 ```powershell
 python -m pip install -e .
 aic26-cli --help
 ```
 
-Các lệnh: `init`, `add`, `analyse`, `index`, `validate`, `serve`. Chạy trong workspace chứa `config.yaml`, hoặc dùng `aic26-cli -w <workspace> ...`.
+The CLI commands are `init`, `add`, `analyse`, `index`, `validate`, and `serve`. Run them from a workspace containing `config.yaml`, or pass `-w <workspace>`.
 
-Xem [README repository](../README.md) để cài đủ dependencies. Backend, frontend và resources giữ cùng package để CLI tìm đúng vị trí.
+See the [repository README](../README.md) for full setup instructions. The backend, frontend, and runtime resources stay within this package so the CLI can locate them after installation.
 
-Phân phối theo [MIT License](LICENSE), giữ nguyên thông báo bản quyền của phần kế thừa.
+See the license distributed with this package for its terms and applicable copyright notices.

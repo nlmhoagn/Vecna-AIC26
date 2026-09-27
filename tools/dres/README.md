@@ -1,15 +1,15 @@
-# Vecna / AIC26 — DRES portal
+# Vecna / AIC26 — Standalone DRES Portal
 
-Cổng nộp bài độc lập gồm `dres_submitter.html` và proxy `submitter_server.py`. Giữ hai file cùng thư mục.
+This folder contains the standalone submission portal and its local proxy. Keep `dres_submitter.html` and `submitter_server.py` together.
 
-Trên Windows, mở `open_submitter.bat`. Launcher chuyển vào thư mục của chính nó nên có thể chạy từ Explorer hoặc thư mục khác.
+On Windows, open `open_submitter.bat`. The launcher switches to its own folder, so it can be started from File Explorer or another working directory.
 
-Hoặc chạy từ repository:
+To start it from the repository root instead, run:
 
 ```powershell
 python tools/dres/submitter_server.py 8080
 ```
 
-Trang mở tại `http://localhost:8080/dres_submitter.html`. Proxy hiện dùng `https://eventretrieval.one`; xác thực và nộp bài được giữ nguyên. Dừng bằng `Ctrl+C`.
+Open the local portal at `http://localhost:8080/dres_submitter.html`. Stop the local server with `Ctrl+C`.
 
-Xem [tài liệu tích hợp](../../docs/integrations/dres.md) cho Web UI chính.
+The remote submission service and its API settings are intentionally not documented here because they may change. Follow the current competition instructions when configuring or using the portal. See the [DRES integration overview](../../docs/integrations/dres.md) for information about the main Web UI integration.
