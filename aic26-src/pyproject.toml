@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=73.0.1", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aic26"
+description = "Vecna multimodal video retrieval engine for AI Challenge 2026"
+version = "2.0.1"
+requires-python = ">= 3.10"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {file = "LICENSE"}
+dependencies = [
+  "rich",
+  "torch", 
+  "torchvision",
+  "torchaudio",
+  "numpy==1.26.4",
+  "transformers",
+  "sentence-transformers",
+  "python-dotenv",
+  "pyyaml",
+  "opencv-python",
+  "pillow",
+  "pymilvus>=2.6.0",
+  "fastapi",
+  "uvicorn",
+  "sentencepiece",
+  "jupyter",
+  "open_clip_torch",
+  "pytesseract",
+  "paddlepaddle",
+  "paddleocr",
+  "vietocr",
+  "shapely",
+  "pyclipper",
+  "whisperx",
+  "faster-whisper",
+  "ctranslate2",
+  "accelerate",
+  "timm",
+  "ftfy",
+  "qwen-vl-utils",
+  "groq",
+  "apscheduler",
+  "deep-translator",
+  "omegaconf",
+  "ultralytics>=8.4.160"
+]
+
+[project.optional-dependencies]
+onnx = [
+  "onnxruntime>=1.20",
+  "tokenizers",
+]
+onnx-directml = [
+  "onnxruntime-directml>=1.20",
+  "tokenizers",
+]
+
+[project.scripts]
+aic26-cli = "aic26.cli.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["aic26", "aic26.*"]
+namespaces = true
+exclude = ["*.frontend", "*.frontend.*", "*.script", "*.script.*"]
+
+[tool.setuptools.package-data]
+"aic26.resources" = ["layout/*.yaml", "milvus-standalone/*.yaml"]
+"aic26.packages.webui" = [
+  "frontend/*.html", "frontend/*.js", "frontend/*.json", "frontend/README.md",
+  "frontend/src/*.jsx", "frontend/src/*.css",
+  "frontend/src/components/*.jsx", "frontend/src/routes/*.jsx",
+  "frontend/src/services/*.js", "frontend/src/resources/*.js",
+  "frontend/src/utils/*.js", "frontend/src/assets/*.svg",
+  "frontend/public/icon/*.svg",
+]
+"aic26" = ["script/*.sh", "script/*.txt"]

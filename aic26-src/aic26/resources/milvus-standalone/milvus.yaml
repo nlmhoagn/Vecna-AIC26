@@ -1,0 +1,19 @@
+proxy:
+  maxVectorFieldNum: 10
+
+queryNode:
+  mmap:
+    mmapEnabled: true
+
+session:
+  ttl: 60
+  retryTimes: 30
+
+common:
+  session:
+    ttl: 60
+    retryTimes: 30
+
+etcd:
+  requestTimeout: 10000
+

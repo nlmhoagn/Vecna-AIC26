@@ -1,0 +1,27 @@
+DEFAULT_FRONTEND_PORT = 5173
+DEFAULT_CORE_PORT = 6900
+DEFAULT_SEARCH_PORT = 1337
+DEFAULT_FILE_PORT = 4200
+
+SEARCH_MULTIMODAL_ENDPOINT = "/api/search_multimodal"
+SEARCH_IMAGE_ENDPOINT = "/api/search_image"
+EXPAND_QUERY_ENDPOINT = "/api/expand_query"
+TARGET_FEATURES_ENDPOINT = "/api/target_features"
+CANCEL_SEARCH_ENDPOINT = "/api/cancel_search"
+
+STREAM_FILE_ENDPOINT = "/api/stream"
+FILE_ENDPOINT = "/api/files"
+FILE_INFO_ENDPOINT = "/api/files/info"
+
+HEALTH_ENDPOINT = "/api/health"
+
+MESSAGE_KEY = "msg"
+TARGET_FEATURES_KEY = "target_features"
+
+RESULT_FRAMES_KEY = "frames"
+RESULT_PARAMS_KEY = "params"
+RESULT_OFFSET_KEY = "offset"
+RESULT_LIMIT_KEY = "limit"
+RESULT_TOTAL_KEY = "total"
+
+DEFAULT_FPS = 25

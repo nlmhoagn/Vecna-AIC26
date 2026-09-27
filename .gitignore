@@ -1,0 +1,99 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+*.manifest
+*.spec
+
+# Virtual environments
+venv/
+env/
+.venv*/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datasets & Features (large files)
+/dataset/
+/data*/
+/features*/
+/workspace/features*/
+map-keyframes/
+*.rar
+*.zip
+*.7z
+*.tar
+*.gz
+*.tgz
+*.bz2
+
+# Model weights & Large Binaries
+*.bin
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.h5
+*.tflite
+*.ckpt
+*.engine
+*.weights
+
+# Data & Embeddings
+*.npy
+*.npz
+*.parquet
+*.pkl
+*.pickle
+
+# Provenance & Workspace & Logs
+provenance*/
+workspace*/
+aic26-src/workspace*
+**.log
+
+# Environment & Local configs
+.env
+.env.*
+.env*.local
+!.env.example
+
+# Testing output
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Agents & AI tooling
+.agents/
+.web/
+.secrets
+drive-download*/
+
+# Local paper drafts and figures
+/paper/
+
+# Frontend dependencies and local caches
+node_modules/
+.cache/
+
+# Archived reports retain their original branding
+/report/archive/
+/docs/architecture/archive/
